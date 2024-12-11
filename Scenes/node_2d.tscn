@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://l5ks5vw418au"]
+[gd_scene load_steps=10 format=4 uid="uid://l5ks5vw418au"]
 
 [ext_resource type="Texture2D" uid="uid://dmkgrqhkeujyb" path="res://assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="1_todgy"]
 [ext_resource type="Texture2D" uid="uid://b5mldrl0m1bq0" path="res://assets/Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_forest_32px.png" id="2_m861n"]
+[ext_resource type="PackedScene" uid="uid://crrjgcuroatya" path="res://Scenes/character.tscn" id="3_mu0aj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y78rl"]
 texture = ExtResource("1_todgy")
@@ -3615,3 +3616,5 @@ tile_set = SubResource("TileSet_yvxse")
 [node name="Structures" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD5/wIAAAAgAAoAAAD5/wMAAAAgAAsAAAD5/wQAAAAgAAwAAAD5/wUAAAAgAA0AAAD6/wIAAAAhAAoAAAD6/wMAAAAhAAsAAAD6/wQAAAAhAAwAAAD6/wUAAAAhAA0AAAD7/wIAAAAiAAoAAAD7/wMAAAAiAAsAAAD7/wQAAAAiAAwAAAD7/wUAAAAiAA0AAAAAAAIAAAAgAAoAAAAAAAMAAAAgAAsAAAAAAAQAAAAgAAwAAAAAAAUAAAAgAA0AAAABAAIAAAAhAAoAAAABAAMAAAAhAAsAAAABAAQAAAAhAAwAAAABAAUAAAAhAA0AAAACAAIAAAAiAAoAAAACAAMAAAAiAAsAAAACAAQAAAAiAAwAAAACAAUAAAAiAA0AAAD8/wIAAAAPAAwAAAD8/wMAAAAPAA0AAAD8/wQAAAAPAA4AAAD9/wAAAAAQAAkAAAD9/wEAAAAQAAoAAAD9/wIAAAAQAAwAAAD9/wMAAAAQAA0AAAD9/wQAAAAQAA4AAAD9/wUAAAAQAA8AAAD+/wAAAAAQAAkAAAD+/wEAAAAQAAoAAAD+/wIAAAAQAAwAAAD+/wMAAAAQAA0AAAD+/wQAAAAQAA4AAAD+/wUAAAAQAA8AAAD//wAAAAARAAkAAAD//wEAAAARAAoAAAD//wIAAAARAAwAAAD//wMAAAARAA0AAAD//wQAAAARAA4AAAD8/wAAAAAPAAkAAAD8/wEAAAAPAAoAAAA=")
 tile_set = SubResource("TileSet_aaswh")
+
+[node name="character" parent="." instance=ExtResource("3_mu0aj")]
