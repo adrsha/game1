@@ -8,10 +8,13 @@
 script/source = "extends CharacterBody2D
 
 
-@export var speed = 300.0
+@export var speed = 8000.0
 @onready var anim = $AnimatedSprite2D
 
-func get_input():
+func _ready() -> void:
+	anim.connect(\"animation_finished\",_on_animated_sprite_2d_animation_finished, 1)
+	
+func get_input(delta):
 	var input_direction = Input.get_vector(\"left\", \"right\", \"top\", \"down\")
 	if input_direction:
 		if input_direction.x <0 :
@@ -19,16 +22,27 @@ func get_input():
 		else:
 			anim.set_flip_h( false)
 		anim.play(\"walk\")
-		velocity = input_direction * speed
+		velocity = input_direction * speed *delta
 	elif Input.is_action_pressed(\"click\"):
-		anim.play(\"attack\")
-	else:
 		velocity = Vector2(0,0)
+		anim.play(\"attack\")
+	elif Input.is_action_pressed(\"hurt\"):
+		velocity = Vector2(0,0)
+		anim.play(\"hurt\")
+	elif Input.is_action_pressed(\"death\"):
+		velocity = Vector2(0,0)
+		anim.play(\"death\")
+	else:
+		velocity = velocity.move_toward(Vector2(0, 0), speed * delta)
 		anim.play(\"idle\")
 
 func _physics_process(delta):
-	get_input()
+	get_input(delta)
 	move_and_slide()
+
+
+func _on_animated_sprite_2d_animation_finished(anim_name:String) -> void:
+	print(\"animation finished for &\", anim_name) # Replace with function body.
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byck6"]
@@ -196,21 +210,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_noit1"]
-radius = 16.7952
-height = 49.1257
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3u2b"]
+radius = 3.00046
+height = 27.9992
 
 [node name="character" type="CharacterBody2D"]
+y_sort_enabled = true
 position = Vector2(359.465, 109.946)
 script = SubResource("GDScript_o3gq8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0.534676, -0.946091)
+position = Vector2(-1.46499, -19.946)
 scale = Vector2(3.04174, 3.04174)
 sprite_frames = SubResource("SpriteFrames_e3jkr")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.739441, -0.508923)
-shape = SubResource("CapsuleShape2D_noit1")
+position = Vector2(-0.464996, 1.054)
+rotation = 1.57034
+shape = SubResource("CapsuleShape2D_a3u2b")
